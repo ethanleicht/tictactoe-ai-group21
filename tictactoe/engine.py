@@ -20,7 +20,7 @@ class Engine:
         if board.is_gameover() or depth >= self.level:
             return self.evaluate_board(board, depth), None
 
-        if ai_turn:
+        if not ai_turn:
             max_eval = float('-inf')
             best_move = None
             for move in available_moves:
