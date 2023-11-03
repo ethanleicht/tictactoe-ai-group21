@@ -20,7 +20,7 @@ class Engine:
         if board.is_gameover() or depth >= self.level:
             return self.evaluate_board(board, depth), None
 
-        if not ai_turn:
+        if ai_turn:
             max_eval = float('-inf')
             best_move = None
             for move in available_moves:
@@ -51,9 +51,11 @@ class Engine:
 
     def evaluate_board(self, board: Board, depth: int) -> Score:
         if board.winner() == self.ai:
-            return board.size**2 - depth
-        elif board.winner() == self.foe:
+            # return board.size**2 - depth
             return -1 * board.size**2 - depth
+        elif board.winner() == self.foe:
+            # return -1 * board.size**2 - depth
+            return board.size**2 - depth
         return 0
 
     def evaluate_best_move(self, board: Board) -> Square:
